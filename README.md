@@ -6,12 +6,12 @@ Prediktion av valutgången 2022 med XGBoost givet SCB:s valundersökningar 1972�
 
 Vald algoritm är XGBRegressor med målfunktion reg:squarederror. Ett typiskt resultat:
 
-Träningspoäng:  0.9949925656989446
-Korsvalidering, medelpoäng: 0.87
-K-delad korsvalidering, medelpoäng: 0.91
-MSE: 6.19
-RMSE: 2.49
-[7.63, 6.32, 17.86, 6.9, 29.04, 8.74, 5.05, 17.79]
+Träningspoäng:  0.9949925656989446<br/>
+Korsvalidering, medelpoäng: 0.87<br/>
+K-delad korsvalidering, medelpoäng: 0.91<br/>
+MSE: 6.19<br/>
+RMSE: 2.49<br/>
+[7.63, 6.32, 17.86, 6.9, 29.04, 8.74, 5.05, 17.79]<br/>
 99.330002784729
 
 ![xboost](https://user-images.githubusercontent.com/71740645/175857950-46dfbe47-229e-455a-9422-b62d024767d0.png)
