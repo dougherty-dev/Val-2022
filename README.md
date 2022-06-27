@@ -1,4 +1,4 @@
-# Val-2022
+# Val 2022
 
 Prediktion av valutgången 2022 med XGBoost givet SCB:s valundersökningar 1972–2022 samt mellanliggande val. Hur rimlig är en sådan modell?
 
