@@ -1,13 +1,12 @@
 import xgboost as xgb
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.model_selection import cross_val_score, KFold
+from sklearn.model_selection import train_test_split, cross_val_score, KFold
 from sklearn.metrics import mean_squared_error
 import matplotlib.pyplot as plt
 
 
-class Trana:
+class Träna:
 	kolumner = ['valresultat', 'o1', 'o2', 'o3', 'o4', 'o5', 'o6', 'o7', 'o8']
 
 	data = [
@@ -132,25 +131,20 @@ class Trana:
 		[17.5, 12.2, 14.8, 19.6, 17.5, 17.6, 17.9, 15.2, 18.8],  # SD 2018
 	]
 
-	def trana_data(self):
-		df = pd.DataFrame(data=self.data, columns=self.kolumner)
-		df.head()
-
+	def träna_data(self):
 		# mål och prediktorer
-		mal = self.kolumner[0]
-		prediktorer = self.kolumner[1:]
-		x = df[prediktorer].values
-		y = df[mal].values
+		df = pd.DataFrame(data=self.data, columns=self.kolumner)
+		x = df[self.kolumner[1:]].values
+		y = df[self.kolumner[0]].values
 		xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size=0.15)
 
 		xgbr = xgb.XGBRegressor(learning_rate=0.01, booster="gbtree", max_depth=6, n_estimators=1000, gamma=0.5, eta=0.1, subsample=0.6, objective="reg:squarederror")
 
 		xgbr.fit(xtrain, ytrain)
-		poang = xgbr.score(xtrain, ytrain)
-		print("Träningspoäng: ", poang)
+		print("Träningspoäng: ", xgbr.score(xtrain, ytrain))
 
-		scores = cross_val_score(xgbr, xtrain, ytrain, cv=10)
-		print("Korsvalidering, medelpoäng: %.2f" % scores.mean())
+		poäng = cross_val_score(xgbr, xtrain, ytrain, cv=10)
+		print("Korsvalidering, medelpoäng: %.2f" % poäng.mean())
 
 		kfold = KFold(n_splits=10, shuffle=True)
 		kd_kv = cross_val_score(xgbr, xtrain, ytrain, cv=kfold)
@@ -181,8 +175,7 @@ class Trana:
 		d = [d_c, d_fp, d_m, d_kd, d_s, d_v, d_mp, d_sd]
 
 		prediktion = np.round(xgbr.predict(d), decimals=2)
-		print(prediktion)
-		print(sum(prediktion))
+		print(prediktion, sum(prediktion))
 
 
-Trana().trana_data()
+Träna().träna_data()
